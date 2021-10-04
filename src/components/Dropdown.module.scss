@@ -1,0 +1,13 @@
+.dropdown {
+  width: 370px;
+  max-width: 95%;
+  height: 50px;
+  margin: 40px auto;
+  perspective: 1000px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.dropped {
+  height: 200px;
+}

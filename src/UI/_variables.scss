@@ -1,0 +1,18 @@
+// Responsive sizing from Bootstrap
+//Bootstrap xs
+$xs: '(max-width: 575px)';
+
+//Bootstrap sm
+$sm: '(min-width: 576px) and (max-width: 767px)';
+
+//Bootstrap md
+$md:'(min-width: 768px) and (max-width: 991px)';
+
+//Bootstrap lg
+$lg: '(min-width: 992px) and (max-width: 1200px)';
+
+//Bootstrap xl
+$xl:'(min-width: 1200px) and (max-width: 1399px)';
+
+//Bootstrap xxl
+$xxl: '(min-width: 1400px)';

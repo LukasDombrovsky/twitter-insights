@@ -1,0 +1,13 @@
+div.button {
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 300px;
+  font-weight: 700;
+  background: #2CB4EE;
+  padding: 15px 30px;
+  margin: 2rem 0.25rem 2rem 0.25rem;
+
+  &:hover {
+    background: #84daff;
+  }
+}
