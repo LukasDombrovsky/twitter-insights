@@ -1,16 +1,17 @@
+@import "../../variables";
+
 .navbar {
   transition: all 0.5s ease-out;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0;
-  
+  text-align: left;
+
   .nav-link {
     font-size: 1rem;
     padding: 10px 20px !important;
     text-decoration: none;
-    color: #0dcaf0;
+    color: $blue;
   }
   .nav-link:hover {
-    color: #db545a !important;
+    color: $red !important;
   }
   .navbar-collapse {
     justify-content: flex-end;

@@ -1,0 +1,44 @@
+@import "../../variables";
+
+.home {
+  min-height: 100vh;
+
+  p {
+    max-width: 40rem;
+    font-size: 1.2rem;
+
+    @media #{$xs} {
+      font-size: 1rem;
+    }
+  }
+}
+
+.mg-7 {
+  margin-top: 7rem;
+
+  @media #{$sm} {
+    margin-top: 0;
+  }
+  @media #{$md} {
+    margin-top: 0;
+  }
+  @media #{$lg} {
+    margin-top: 0;
+  }
+  @media #{$xl} {
+    margin-top: 0;
+  }
+  @media #{$xxl} {
+    margin-top: 0;
+  }
+}
+
+.heading {
+  font-weight: 700;
+  color: white;
+  font-size: 3rem;
+
+  @media #{$xs} {
+    font-size: 2rem;
+  }
+}

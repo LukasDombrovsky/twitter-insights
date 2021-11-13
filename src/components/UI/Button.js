@@ -4,12 +4,7 @@ import classes from "./Button.module.scss";
 
 const Button = (props) => {
   return (
-    <Btn
-      className={classes.button}
-      type={props.type || "button"}
-      onClick={props.onClick}
-      {...props}
-    >
+    <Btn className={classes.button} {...props}>
       {props.children}
     </Btn>
   );

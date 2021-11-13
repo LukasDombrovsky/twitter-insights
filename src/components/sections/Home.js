@@ -4,23 +4,21 @@ import Col from "react-bootstrap/Col";
 import Button from "../UI/Button";
 import SectionWithBgImage from "../UI/SectionWithBgImage";
 
-import classes from "./Header.module.scss";
+import classes from "./Home.module.scss";
 
-import bgImage from "../img/cover.jpg";
-import { HashLink } from "react-router-hash-link";
+import bgImage from "../../img/cover.jpg";
 
-const Header = () => {
+const Home = (props) => {
   return (
     <SectionWithBgImage
+      id={props.id}
       bgImage={bgImage}
-      className={classes.header}
+      className={classes.home}
     >
       <Container className={classes["mg-7"]}>
         <Row>
           <Col className="d-flex justify-content-center">
-            <h1 className={`${classes.heading} display-2`}>
-              Twitter Insights
-            </h1>
+            <h1 className={`${classes.heading} display-2`}>Twitter Insights</h1>
           </Col>
         </Row>
         <Row>
@@ -31,27 +29,21 @@ const Header = () => {
         <Row>
           <Col className="d-flex justify-content-center">
             <p>
-              What people on Twitter think different topics? See it using this app!
+              What people on Twitter think different topics? See it using this
+              app!
               <br />
               This app downloads data related to tech topic, finds out most used
-              hashtags, downloads data realted to these hashtags and sends them to cognitive APIs
-              for analysis. Results are visualized right below.
+              hashtags, downloads data realted to these hashtags and sends them
+              to cognitive APIs for analysis. Results are visualized right
+              below.
             </p>
           </Col>
         </Row>
         <Row>
           <Col className="d-flex justify-content-center">
-            <HashLink to="/#Insights">
-              <Button
-                as="div"
-                variant="primary"
-                href="#insights"
-                type="button"
-                size="xl"
-              >
-                <span>Get insights!</span>
-              </Button>
-            </HashLink>
+            <Button href="#insights" type="button">
+              <span>Get insights!</span>
+            </Button>
           </Col>
         </Row>
       </Container>
@@ -59,4 +51,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Home;

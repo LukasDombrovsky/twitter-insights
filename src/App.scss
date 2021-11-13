@@ -1,4 +1,6 @@
-@import "~bootstrap/scss/bootstrap";
+* {
+  box-sizing: border-box;
+}
 
 body {
   font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
@@ -9,15 +11,38 @@ body {
 }
 
 p {
-  font-family: "Merriweather", "Helvetica Neue", Arial, sans-serif;
-  font-family: 'Merriweather Sans', sans-serif;
   text-transform: none;
   font-size: 1.2rem;
   font-weight: 100;
 }
 
 hr {
-  border-top: 3px solid #2CB4EE;
-  opacity: 1; 
+  border-top: 3px solid #2cb4ee;
+  opacity: 1;
   width: 50px;
+  margin: 30px auto;
 }
+
+h2 {
+  font-size: 2rem;
+}
+
+// Container classes
+.container-750 {
+  max-width: 750px !important;
+}
+
+.container-1000 {
+  max-width: 1000px;
+}
+// Container classes - end
+
+// Property classes
+.text-white {
+  color: white;
+}
+
+.no-text-transform {
+  text-transform: none;
+}
+// Property classes - end

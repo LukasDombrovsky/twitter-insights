@@ -7,18 +7,16 @@ import { NavHashLink } from "react-router-hash-link";
 
 import classes from "./NavigationBar.module.scss";
 
-// Navigation bar with color change when scrolled and fixed on top of page
 const NavigationBar = (props) => {
   const [pageScrolled, setPageScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const show = window.scrollY > 50;
-      if (pageScrolled !== show) {
-        setPageScrolled(show);
-      }
+      setPageScrolled(window.scrollY > 50);
     };
+
     document.addEventListener("scroll", handleScroll);
+
     return () => {
       document.removeEventListener("scroll", handleScroll);
     };
@@ -30,11 +28,11 @@ const NavigationBar = (props) => {
       className={classes["nav-link"]}
       style={{
         color: pageScrolled
-          ? props.colors.dynamic.textColor
-          : props.colors.static.textColor,
+          ? props.colors.scrolled.textColor
+          : props.colors.notScrolled.textColor,
       }}
       smooth
-      activeStyle={{ color: "#0dcaf0" }}
+      activeStyle={{ color: props.activeTextColor }}
       to={`/#${link}`}
     >
       {link}
@@ -43,31 +41,35 @@ const NavigationBar = (props) => {
 
   return (
     <Navbar
-      id="navbar"
       className={classes.navbar}
       variant={pageScrolled ? "light" : "dark"}
       expand={props.expand}
       fixed="top"
       style={{
         backgroundColor: pageScrolled
-          ? props.colors.dynamic.backgroundColor
-          : props.colors.static.backgroundColor,
-          borderBottom: pageScrolled ?
-          props.colors.dynamic.borderBottom :
-          props.colors.static.borderBottom
+          ? props.colors.scrolled.backgroundColor
+          : props.colors.notScrolled.backgroundColor,
+        borderBottom: pageScrolled
+          ? props.colors.scrolled.borderBottom
+          : props.colors.notScrolled.borderBottom,
       }}
     >
-      <Container fluid={true}>
+      <Container fluid={props.fluid}>
         <Navbar.Brand
           className={classes["navbar-brand"]}
           href={props.homeLink}
           style={{
             color: pageScrolled
-              ? props.colors.dynamic.textColor
-              : props.colors.static.textColor,
+              ? props.colors.scrolled.textColor
+              : props.colors.notScrolled.textColor,
           }}
         >
-          <img src={props.brand} alt="Twitter insights logo" />
+          {typeof props.brand === "string" &&
+          (props.brand.includes("jpg") || props.brand.includes("png")) ? (
+            <img src={props.brand} alt="Application logo" />
+          ) : (
+            props.brand
+          )}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse

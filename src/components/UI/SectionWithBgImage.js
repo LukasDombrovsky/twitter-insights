@@ -4,9 +4,9 @@ const SectionWithBgImage = (props) => {
     backgroundSize: "cover",
   };
 
-  // if(props.height) {
-  //   style["height"] = props.height;
-  // }
+  if (props.height) {
+    style["height"] = props.height;
+  }
 
   return (
     <div
