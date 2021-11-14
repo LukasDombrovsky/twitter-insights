@@ -1,30 +1,31 @@
-import React, { useState } from "react";
-import Container from "react-bootstrap/Container";
+import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import axios from "axios";
 import Dropdown from "./Dropdown";
 import Item from "./Item";
 import ProgressChart from "./ProgressChart";
 import SparkleProgressbar from "./SparkleProgressbar";
+import useHttp from "../../hooks/use-http";
+import Button from "../../UI/Button";
 
 import classes from "./Insights.module.scss";
 
 const Insights = (props) => {
-  const data = [];
-  const [isDropped, setIsDropped] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [data, setData] = useState();
+  const [dropdownCollapsed, setDropdownCollapsed] = useState(true);
   const [selectedHashtag, setSelectedHashtag] = useState({});
 
-  axios
-    .get("insightsData.json")
-    .then((response) => {
+  const { isLoading, error, sendRequest: getData } = useHttp();
+
+  useEffect(() => {
+    const transformData = (dataObj) => {
       let index = 0;
       let item = {};
+      let tempDataObj = {};
 
       // Preparing hashtags object from json data
       // Every hashtag has 6 fields, each one contains one emotion
-      response.data.forEach((group) => {
+      dataObj.forEach((group) => {
         // Every 6th entry contains last emotion for hashtag
         if (index % 5 === 0 && index !== 0) {
           item.hashtag = group.hashtag;
@@ -34,28 +35,30 @@ const Insights = (props) => {
           item[group.trait] = group.traitPercentage;
 
           // So we push item to the object
-          if (index > 0) {
-            data[item.hashtag] = item;
-            item = {};
-          }
+          // if (index > 0) {
+          tempDataObj[item.hashtag] = item;
+          item = {};
+          // }
           // On first five indexes only emotion and percetage is relevant
         } else {
           item[group.trait] = group.traitPercentage;
         }
         index++;
       });
-    })
-    .catch(() => {
-      // Second function handles error
-      console.log("Error reading data...");
-    });
+      setData(tempDataObj);
+    };
+
+    getData(
+      {
+        url: "https://twitter-insights-react-default-rtdb.firebaseio.com/data.json",
+      },
+      transformData
+    );
+  }, [getData]);
 
   const toggleDropdownMenuHandler = () => {
-    setIsCollapsed((prevIsCollapsed) => {
-      return !prevIsCollapsed;
-    });
-    setIsDropped((prevIsDropped) => {
-      return !prevIsDropped;
+    setDropdownCollapsed((prevState) => {
+      return !prevState;
     });
   };
 
@@ -64,36 +67,8 @@ const Insights = (props) => {
     toggleDropdownMenuHandler();
   };
 
-  return (
-    <Container className={classes[props.className]}>
-      <Row>
-        <Col className="d-flex justify-content-center">
-          <h2 className={classes.heading}>Explore Insights</h2>
-        </Col>
-      </Row>
-      <Row>
-        <Col className="d-flex justify-content-center">
-          <hr />
-        </Col>
-      </Row>
-      <Row>
-        <Col className="d-flex justify-content-center">
-          <Dropdown isDropped={isDropped}>
-            {["#AI", "#EV", "#cryptocurrency"].map((itemId) => (
-              <Item
-                key={itemId}
-                isCollapsed={isCollapsed}
-                onClick={() => onItemChooseHandler(itemId)}
-              >
-                {itemId}
-              </Item>
-            ))}
-            <Item onClick={toggleDropdownMenuHandler} isCollapsed={isCollapsed}>
-              Select hashtag
-            </Item>
-          </Dropdown>
-        </Col>
-      </Row>
+  let content = data ? (
+    <>
       {Object.keys(selectedHashtag).length !== 0 && (
         <Row>
           <Col>
@@ -102,7 +77,7 @@ const Insights = (props) => {
               text="% from top hashtags"
             />
           </Col>
-          <Col>
+          <Col className="d-flex justify-content-center align-items-center">
             <div className={classes.hastagTitle}>{selectedHashtag.hashtag}</div>
           </Col>
           <Col>
@@ -153,7 +128,65 @@ const Insights = (props) => {
           </Col>
         </Row>
       )}
-    </Container>
+    </>
+  ) : (
+    ""
+  );
+
+  if (error) {
+    content = (
+      <>
+        <h4 style={{ color: "red" }}>
+          Sorry. Loading of insights data failed.
+        </h4>
+        <Button type="button" onClick={getData}>
+          Try to download data again
+        </Button>
+      </>
+    );
+  }
+
+  if (isLoading) {
+    content = "Loading data...";
+  }
+
+  return (
+    <div className={classes.insights}>
+      <Row>
+        <Col className="d-flex justify-content-center">
+          <h2 className={classes.heading}>Explore Insights</h2>
+        </Col>
+      </Row>
+      <Row>
+        <Col className="d-flex justify-content-center">
+          <hr />
+        </Col>
+      </Row>
+      <Row>
+        <Col className="d-flex justify-content-center">
+          <Dropdown isDropped={!dropdownCollapsed}>
+            {["#AI", "#EV", "#cryptocurrency"].map((itemId) => (
+              <Item
+                key={itemId}
+                isCollapsed={dropdownCollapsed}
+                onClick={() => {
+                  onItemChooseHandler(itemId);
+                }}
+              >
+                {itemId}
+              </Item>
+            ))}
+            <Item
+              onClick={toggleDropdownMenuHandler}
+              isCollapsed={dropdownCollapsed}
+            >
+              Select hashtag
+            </Item>
+          </Dropdown>
+        </Col>
+      </Row>
+      {content}
+    </div>
   );
 };
 

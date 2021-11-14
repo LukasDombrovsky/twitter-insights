@@ -1,75 +1,77 @@
-
 .progressChart {
-    width: 143px;
-    height: 143px;
-    border-radius: 50%;
-    background-color: #E5E5E5;
-    position: relative;
-    margin: 20px auto 0;
-  }
-  
-  .gt-50 {
-    background-color: #2CB4EE;
-  }
-  
-  .progress {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    left: calc(50% - 100px);
-    top: calc(50% - 100px);
-    width: 200px;
-    height: 200px;
-    clip: rect(0, 200px, 200px, 100px);
-  }
-  .progress .progress-fill {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    left: calc(50% - 72px);
-    top: calc(50% - 72px);
-    width: 143px;
-    height: 143px;
-    clip: rect(0, 71px, 143px, 0);
-    background: #2CB4EE;
-    transform: rotate(60deg);
-  }
-  .gt-50 .progress {
-    clip: rect(0, 100px, 200px, 0);
-  }
-  .gt-50 .progress .progress-fill {
-    clip: rect(0, 200px, 200px, 100px);
-    background: #E5E5E5;
-  }
-  
-  .percents {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    left: calc(50% - 127px/2);
-    top: calc(50% - 127px/2);
-    width: 127px;
-    height: 127px;
-    background: #fff;
-    text-align: center;
-    display: table;
-  }
-  .percents span {
-    display: inline-block;
-    font-size: 2em;
-    font-weight: bold;
-    color: #2CB4EE;
-  }
-  .percents-text {
-    font-size: 1.5em;
-    color: #2CB4EE;
-    position: relative;
-    text-align: center;
-  }
-  
-  .percents-wrapper {
-    display: table-cell;
-    vertical-align: middle;
-  }
-  
-  
+  width: 143px;
+  height: 143px;
+  border-radius: 50%;
+  background-color: #e5e5e5;
+  position: relative;
+  margin: 20px auto 0;
+}
+
+.gt-50 {
+  background-color: #2cb4ee;
+}
+
+.progress {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 100px);
+  top: calc(50% - 100px);
+  width: 200px;
+  height: 200px;
+  clip: rect(0, 200px, 200px, 100px);
+}
+
+.progress .progress-fill {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 72px);
+  top: calc(50% - 72px);
+  width: 143px;
+  height: 143px;
+  clip: rect(0, 71px, 143px, 0);
+  background: #2cb4ee;
+  transform: rotate(60deg);
+}
+
+.gt-50 .progress {
+  clip: rect(0, 100px, 200px, 0);
+}
+
+.gt-50 .progress .progress-fill {
+  clip: rect(0, 200px, 200px, 100px);
+  background: #e5e5e5;
+}
+
+.percents {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 127px / 2);
+  top: calc(50% - 127px / 2);
+  width: 127px;
+  height: 127px;
+  background: #fff;
+  text-align: center;
+  display: table;
+}
+
+.percents span {
+  display: inline-block;
+  font-size: 2em;
+  font-weight: bold;
+  color: #2cb4ee;
+}
+
+.percents-text {
+  font-size: 1.5em;
+  color: #2cb4ee;
+  position: relative;
+  text-align: center;
+}
+
+.percents-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}

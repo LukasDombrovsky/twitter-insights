@@ -42,7 +42,7 @@ const Home = (props) => {
         <Row>
           <Col className="d-flex justify-content-center">
             <Button href="#insights" type="button">
-              <span>Get insights!</span>
+              Get insights!
             </Button>
           </Col>
         </Row>

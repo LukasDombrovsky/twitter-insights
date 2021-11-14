@@ -1,7 +1,6 @@
 @import "../../../variables";
 
 .insights {
-  font-family: "Merriweather", "Helvetica Neue", Arial, sans-serif;
   font-weight: 300;
   text-transform: none;
   color: black;
@@ -12,17 +11,5 @@
 }
 
 .hastagTitle {
-  font-size: 48px;
-  height: 193px;
-  padding-top: 51px;
-  text-align: center;
-}
-
-#headerLogo {
-  position: relative;
-  top: -36px;
-}
-
-#DD {
-  z-index: 100;
+  font-size: 3rem;
 }

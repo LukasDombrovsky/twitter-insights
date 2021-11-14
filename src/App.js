@@ -33,7 +33,7 @@ function App() {
       />
       <Home id="home" />
       <Section id="insights">
-        <Insights className="insights" />
+        <Insights />
       </Section>
       <Section id="contact" backgroundColor="#222222" narrow-width>
         <Contact />
